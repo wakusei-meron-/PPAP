@@ -11,12 +11,15 @@ API_KEY = '207378cc6de84a5799367835c4889df2'
 INTEGRATED_ID = 1
 
 
-def find(keyword):
+def find(keyword, offset, count, mkt):
     """ 画像一覧の取得
-    @prams keyword: 検索すキーワード
+    @params keyword: 検索キーワード
+    @params offset: オフセット
+    @params count: 取得件数
+    @params mkt: 国の指定などのマーケット(ex. ja-JP)
     @returns Imageの配列
     """
-    url = '{}&q={}'.format(BASE_URL, keyword)
+    url = '{}&q={}&offset={}&count={}&mkt={}'.format(BASE_URL, keyword, offset, count, mkt)
     req = urllib2.Request(url)
     req.add_header(AUTH_KEY, API_KEY)
     res = urllib2.urlopen(req).read()
